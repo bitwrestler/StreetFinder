@@ -1,0 +1,16 @@
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+div.banner {
+    display: block;
+    width: 98%;
+    margin: 30px 30px 10px 10px;
+    background-color: #80ccc6;
+}
