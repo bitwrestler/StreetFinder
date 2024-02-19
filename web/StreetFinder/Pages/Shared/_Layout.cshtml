@@ -13,14 +13,15 @@
             <H3>Street Finder</H3>
             <small>Search for partial street names in NOVA area</small>
         </div>
+        @await RenderSectionAsync("HeaderScript", required: false)
     </header>
     <div class="content">
             @RenderBody()
     </div>
 
+    <!-- @await RenderSectionAsync("Scripts", required: false) -->
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
-    <!-- @await RenderSectionAsync("Scripts", required: false) -->
 </body>
 </html>

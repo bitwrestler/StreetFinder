@@ -4,3 +4,35 @@
     ViewData["Title"] = "Home page";
 }
 
+@section HeaderScript{
+ <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', (event) => {
+        $('#searcher').on
+            ("input",
+                function () {
+                    var pat = $('#searcher').val();
+                    if (pat.length >= @Model.MinSearchPattern) {
+                        $('#results').empty();
+                        $.getJSON('/api/StreetRecord/' + pat).done(
+                            function (results) {
+                                $.each(
+                                    results, function (i, street) {
+                                        var item = `<li>${i}. <strong>${street.name}</strong></li>`;
+                                        $('#results').append(item);
+                                    }
+                                );
+                            }
+                        );
+                    }
+                }
+            );
+    });
+</script>
+}
+<form id="searchFrm">
+    <input type="text" id="searcher" />
+</form>
+
+<div id="results" class="content">
+
+</div>

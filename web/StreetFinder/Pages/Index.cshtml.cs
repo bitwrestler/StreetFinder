@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using StreetFinder.Controllers;
 
 namespace StreetFinder.Pages
 {
@@ -11,6 +12,8 @@ namespace StreetFinder.Pages
         {
             _logger = logger;
         }
+
+        public int MinSearchPattern => SearchController.MIN_SEARCH_PATTERN;
 
         public void OnGet()
         {
