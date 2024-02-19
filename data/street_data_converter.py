@@ -23,7 +23,7 @@ with open(sys.argv[1], 'r', encoding='utf-8', newline='') as reader:
             streetarray.append(tdict)
             streetdistinct.add(fn)
 
-output_struct = {'update_date' : datetime.datetime.now().isoformat(), 'data' : streetarray }
+output_struct = {'update_date' : datetime.datetime.now().isoformat(), 'data' : sorted(streetarray, key=lambda k: k['name']) }
 
 with open('streets.json', 'w', encoding='utf-8') as writer:
     json.dump(output_struct, writer)
