@@ -7,6 +7,7 @@ namespace StreetFinder.Controllers
     [Route("api/StreetRecord")]
     public class SearchController : Controller
     {
+        public const int MAX_SEARCH_RESULTS = 50;
         public const int MIN_SEARCH_PATTERN = 3;
 
         [HttpGet("{pattern}", Name = "Search")]
@@ -15,7 +16,7 @@ namespace StreetFinder.Controllers
             if(pattern.Length < MIN_SEARCH_PATTERN)
                 return Enumerable.Empty<StreetRecord>();
 
-            return AzureDataAdapter.Instance.StreetData.Search(pattern);
+            return AzureDataAdapter.Instance.StreetData.Search(pattern).Take(MAX_SEARCH_RESULTS);
         }
     }
 }

@@ -17,22 +17,27 @@
                             function (results) {
                                 $.each(
                                     results, function (i, street) {
-                                        var item = `<li>${i}. <strong>${street.name}</strong></li>`;
+                                        var num = i + 1;
+                                        var item = `<li>${num}. <strong>${street.name}</strong></li>`;
                                         $('#results').append(item);
                                     }
                                 );
                             }
                         );
+                    } else if (pat.length == 0) {
+                        $('#results').empty();
                     }
                 }
             );
     });
 </script>
 }
-<form id="searchFrm">
-    <input type="text" id="searcher" />
+<form id="searchFrm" class="pico">
+    <input type="text" id="searcher" autofocus />
 </form>
 
-<div id="results" class="content">
+<div id="resultsContainer" class="pico">
+    <ul id="results">
 
+    </ul>
 </div>

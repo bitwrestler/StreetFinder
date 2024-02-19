@@ -14,3 +14,23 @@ div.banner {
     margin: 30px 30px 10px 10px;
     background-color: #80ccc6;
 }
+
+#resultsContainer {
+    width: 85vw;
+}
+
+#results {
+    padding-left: 3vw;
+    height: 50vh;
+    column-width: 220px;
+}
+
+/*
+#results li {
+    display: inline-block;
+}
+*/
+
+#searchFrm{
+    padding: 3vw;
+}
