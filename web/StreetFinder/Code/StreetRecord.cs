@@ -1,4 +1,4 @@
 ﻿namespace StreetFinder.Code
 {
-    public record StreetRecord(string name, int[] zipRange);
+    public record StreetRecord(string Name, int[] ZipCodeRange);
 }

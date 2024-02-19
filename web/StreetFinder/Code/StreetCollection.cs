@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using System.Runtime.Serialization;
 
 namespace StreetFinder.Code
 {
@@ -14,5 +13,21 @@ namespace StreetFinder.Code
         public DateTime UpdateDate { get; private set;}
 
         public ImmutableArray<StreetRecord> StreetData { get; private set; }
+
+        public IEnumerable<StreetRecord> Search(string pattern)
+        {
+            string pat = pattern.ToUpper();
+            return StreetData.Where(w=>w.Name.Contains(pat));
+        }
+
+        public async IAsyncEnumerable<StreetRecord> SearchAsync(string pattern)
+        {
+            string pat = pattern.ToUpper();
+           await foreach (
+                var r in  StreetData.ToAsyncEnumerable()
+                .WhereAwait( (w) => ValueTask.FromResult(w.Name.Contains(pat)) )
+                )
+                yield return r;
+        }
     }
 }

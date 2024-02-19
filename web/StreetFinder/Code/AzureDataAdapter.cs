@@ -47,8 +47,7 @@ namespace StreetFinder.Code
             } 
         }
 
-
-        private static StreetCollection JsonDocToCollection(JsonDocument doc)
+        internal static StreetCollection JsonDocToCollection(JsonDocument doc)
         {
 
             DateTime? update_date=null;
