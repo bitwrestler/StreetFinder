@@ -1,11 +1,18 @@
 ﻿using System.Collections.Immutable;
+using System.Runtime.Serialization;
 
 namespace StreetFinder.Code
 {
-    [Serializable]
     public class StreetCollection
     {
-        public DateTime UpdateDate { get; set; }
-        public ImmutableArray<StreetRecord> StreetRecords { get; set; }
+        public StreetCollection(DateTime udpdt, IEnumerable<StreetRecord> data) 
+        {
+            UpdateDate = udpdt;
+            StreetData = data.ToImmutableArray();
+        }
+
+        public DateTime UpdateDate { get; private set;}
+
+        public ImmutableArray<StreetRecord> StreetData { get; private set; }
     }
 }

@@ -1,4 +1,5 @@
 using ers_config;
+using StreetFinder.Code;
 
 namespace StreetFinder
 {
@@ -18,6 +19,7 @@ namespace StreetFinder
 #if DEBUG
             DebugConfig.ProcessDotEnvFile(DebugConfig.FindAzureConfigInParents(".env"));
 #endif
+            _ = AzureDataAdapter.Instance;
             app.Run();
         }
     }
