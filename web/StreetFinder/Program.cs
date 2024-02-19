@@ -1,3 +1,5 @@
+using ers_config;
+
 namespace StreetFinder
 {
     public class Program
@@ -12,6 +14,10 @@ namespace StreetFinder
             app.UseStaticFiles();
             app.UseRouting();
             app.MapRazorPages();
+
+#if DEBUG
+            DebugConfig.ProcessDotEnvFile(DebugConfig.FindAzureConfigInParents(".env"));
+#endif
             app.Run();
         }
     }
