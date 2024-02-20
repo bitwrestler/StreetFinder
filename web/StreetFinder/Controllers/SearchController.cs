@@ -10,13 +10,20 @@ namespace StreetFinder.Controllers
         public const int MAX_SEARCH_RESULTS = 50;
         public const int MIN_SEARCH_PATTERN = 3;
 
+        private readonly AzureDataAdapter _adapter;
+
+        public SearchController(AzureDataAdapter dataAdapter)
+        { 
+            _adapter = dataAdapter;
+        }
+
         [HttpGet("{pattern}", Name = "Search")]
         public IEnumerable<StreetRecord> Search(string pattern)
         {
             if(pattern.Length < MIN_SEARCH_PATTERN)
                 return Enumerable.Empty<StreetRecord>();
 
-            return AzureDataAdapter.Instance.StreetData.Search(pattern).Take(MAX_SEARCH_RESULTS);
+            return _adapter.StreetData.Search(pattern).Take(MAX_SEARCH_RESULTS);
         }
     }
 }

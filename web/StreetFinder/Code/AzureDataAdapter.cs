@@ -5,18 +5,6 @@ namespace StreetFinder.Code
 {
     public class AzureDataAdapter
     {
-        private static AzureDataAdapter? _instance = null;
-        public static AzureDataAdapter Instance
-        {
-            get
-            {
-                if(_instance is null)
-                    _instance = new AzureDataAdapter();
-                return _instance;
-            }
-        }
-
-
         public const string SETTING_KEY = "AZURE_STORAGE_CONNECTION_STRING";
         public const string CONTAINER_NAME = "streetsdata";
         public const string BLOB_NAME = "nova_data.json";
