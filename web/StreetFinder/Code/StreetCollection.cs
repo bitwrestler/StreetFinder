@@ -21,16 +21,5 @@ namespace StreetFinder.Code
         }
 
         //TODO async searching
-        /*
-        public async IAsyncEnumerable<StreetRecord> SearchAsync(string pattern)
-        {
-            string pat = pattern.ToUpper();
-           await foreach (
-                var r in  StreetData.ToAsyncEnumerable()
-                .WhereAwait( (w) => ValueTask.FromResult(w.Name.Contains(pat)) )
-                )
-                yield return r;
-        }
-        */
     }
 }
