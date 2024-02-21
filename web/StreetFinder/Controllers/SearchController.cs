@@ -17,7 +17,7 @@ namespace StreetFinder.Controllers
             _adapter = dataAdapter;
         }
 
-        [HttpGet("{pattern}", Name = "Search")]
+        [HttpGet("Search", Name = "Search")]
         public IEnumerable<StreetRecord> Search(string pattern)
         {
             if(pattern.Length < MIN_SEARCH_PATTERN)

@@ -13,7 +13,7 @@
                     var pat = $('#searcher').val();
                     if (pat.length >= @Model.MinSearchPattern) {
                         $('#results').empty();
-                        $.getJSON('/api/StreetRecord/' + pat).done(
+                        $.getJSON('/api/StreetRecord/Search', { pattern: pat }).done(
                             function (results) {
                                 $.each(
                                     results, function (i, street) {
