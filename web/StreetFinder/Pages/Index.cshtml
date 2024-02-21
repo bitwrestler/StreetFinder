@@ -8,27 +8,7 @@
  <script type="text/javascript">
     window.addEventListener('DOMContentLoaded', (event) => {
         $('#searcher').on
-            ("input",
-                function () {
-                    var pat = $('#searcher').val();
-                    if (pat.length >= @Model.MinSearchPattern) {
-                        $('#results').empty();
-                        $.getJSON('/api/StreetRecord/Search', { pattern: pat }).done(
-                            function (results) {
-                                $.each(
-                                    results, function (i, street) {
-                                        var num = i + 1;
-                                        var item = `<li>${num}. <strong>${street.name}</strong></li>`;
-                                        $('#results').append(item);
-                                    }
-                                );
-                            }
-                        );
-                    } else if (pat.length == 0) {
-                        $('#results').empty();
-                    }
-                }
-            );
+            ("input", function () { street_searcher(@Model.MinSearchPattern); });
     });
 </script>
 }

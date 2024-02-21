@@ -6,6 +6,9 @@
     <title>@ViewData["Title"] - StreetFinder</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@picocss/pico@2/css/pico.conditional.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @await RenderSectionAsync("HeaderScript", required: false)
 </head>
 <body>
     <header>
@@ -13,7 +16,6 @@
             <H3>Street Finder</H3>
             <small>Search for partial street names in NOVA area</small>
         </div>
-        @await RenderSectionAsync("HeaderScript", required: false)
     </header>
     <div class="content">
             @RenderBody()
@@ -21,7 +23,5 @@
 
     <!-- @await RenderSectionAsync("Scripts", required: false) -->
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>
