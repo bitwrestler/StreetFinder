@@ -23,7 +23,7 @@ namespace StreetFinder.Controllers
             if(pattern.Length < MIN_SEARCH_PATTERN)
                 return Enumerable.Empty<StreetRecord>();
 
-            return _adapter.StreetData.Search(pattern).Take(MAX_SEARCH_RESULTS);
+            return _adapter.StreetData.Search(pattern, SearchOptions.Contains).Take(MAX_SEARCH_RESULTS);
         }
     }
 }

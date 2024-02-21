@@ -14,12 +14,14 @@ namespace StreetFinder.Code
 
         public ImmutableArray<StreetRecord> StreetData { get; private set; }
 
-        public IEnumerable<StreetRecord> Search(string pattern)
+        public IEnumerable<StreetRecord> Search(string pattern, SearchOptions options)
         {
-            string pat = pattern.ToUpper();
-            return StreetData.Where(w=>w.Name.Contains(pat));
+            var handler = new SearchHandler(pattern, options);
+            return StreetData.Where(handler.Search);
         }
 
+        //TODO async searching
+        /*
         public async IAsyncEnumerable<StreetRecord> SearchAsync(string pattern)
         {
             string pat = pattern.ToUpper();
@@ -29,5 +31,6 @@ namespace StreetFinder.Code
                 )
                 yield return r;
         }
+        */
     }
 }
