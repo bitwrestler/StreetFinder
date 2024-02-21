@@ -15,6 +15,10 @@ div.banner {
     background-color: #80ccc6;
 }
 
+div.content{
+    padding-left: 3vw;
+}
+
 #resultsContainer {
     width: 85vw;
 }
