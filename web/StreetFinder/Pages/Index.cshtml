@@ -6,8 +6,8 @@
 
 @section HeaderScript{
  <script type="text/javascript">
-    window.addEventListener('DOMContentLoaded', (event) => {
-        $('#loader_spinner').hide();
+     $('#results').tooltip();
+     window.addEventListener('DOMContentLoaded', (event) => {
         $('#searcher').on
             ("input", function () { street_searcher(@Model.MinSearchPattern); });
     });
