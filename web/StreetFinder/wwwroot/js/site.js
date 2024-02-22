@@ -1,8 +1,4 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-// Write your JavaScript code.
-
-function street_searcher(min_search_pattern) {
+﻿function street_searcher(min_search_pattern) {
     var pat = $('#searcher').val();
     if (pat.length >= min_search_pattern) {
         $('#results').empty();
@@ -13,7 +9,7 @@ function street_searcher(min_search_pattern) {
                         var num = i + 1;
                         var item = `<li>${num}. <strong>${street.name}</strong></li>`;
                         $('#results').append(item);
-                    }
+                }
                 );
             }
         );

@@ -8,11 +8,24 @@
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+h1 {
+    font-size: 40pt;
+    vertical-align: top;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+h3{
+    margin: 0px;
+}
+
 div.banner {
     display: block;
     width: 98%;
-    margin: 30px 30px 10px 10px;
-    background-color: #80ccc6;
+    margin: 30px;
+    padding: 2em;
+    background-image: url("../streetsbg.jpg");
+    background-size: cover
 }
 
 div.content{
@@ -30,5 +43,6 @@ div.content{
 }
 
 #searchFrm{
-    padding: 3vw;
+    padding: .75em;
 }
+
