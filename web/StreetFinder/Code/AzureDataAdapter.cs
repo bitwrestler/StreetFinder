@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace StreetFinder.Code
 {
-    public class AzureDataAdapter
+    public class AzureDataAdapter : IDataAdapter
     {
         public const string SETTING_KEY = "AZURE_STORAGE_CONNECTION_STRING";
         public const string CONTAINER_NAME = "streetsdata";

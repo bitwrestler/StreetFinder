@@ -10,9 +10,9 @@ namespace StreetFinder.Controllers
         public const int MAX_SEARCH_RESULTS = 50;
         public const int MIN_SEARCH_PATTERN = 3;
 
-        private readonly AzureDataAdapter _adapter;
+        private readonly IDataAdapter _adapter;
 
-        public SearchController(AzureDataAdapter dataAdapter)
+        public SearchController(IDataAdapter dataAdapter)
         { 
             _adapter = dataAdapter;
         }

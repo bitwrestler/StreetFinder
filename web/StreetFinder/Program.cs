@@ -15,9 +15,12 @@ namespace StreetFinder
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-            builder.Services.AddSingleton<AzureDataAdapter>();
+            builder.Services.AddSingleton<IDataAdapter,AzureDataAdapter>();
             var app = builder.Build();
-            
+
+            //warm up the data service
+            app.Lifetime.ApplicationStarted.Register(() => app.Services.GetService(typeof(IDataAdapter)));
+
             app.UseStaticFiles();
             app.UseRouting();
             app.MapControllers();
