@@ -5,11 +5,15 @@
     return "zipcode: " + z;
 }
 
+function getSearchType() {
+    return $('input[name="search-type-radio"]:checked').val();
+}
+
 function street_searcher(min_search_pattern) {
     var pat = $('#searcher').val();
     if (pat.length >= min_search_pattern) {
         $('#results').empty();
-        $.getJSON('/api/StreetRecord/Search', { pattern: pat }).done(
+        $.getJSON('/api/StreetRecord/Search', { pattern: pat, searchType: getSearchType() }).done(
             function (results) {
                 $.each(
                     results, function (i, street) {

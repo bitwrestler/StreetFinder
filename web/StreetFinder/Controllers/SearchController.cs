@@ -18,12 +18,15 @@ namespace StreetFinder.Controllers
         }
 
         [HttpGet("Search", Name = "Search")]
-        public IEnumerable<StreetRecord> Search(string pattern)
+        public IEnumerable<StreetRecord> Search(string pattern, string searchType)
         {
+            if (!Enum.TryParse<SearchOptions>(searchType, false, out var searchOption))
+                searchOption = SearchOptions.Contains;
+
             if(pattern.Length < MIN_SEARCH_PATTERN)
                 return Enumerable.Empty<StreetRecord>();
 
-            return _adapter.StreetData.Search(pattern, SearchOptions.Contains).Take(MAX_SEARCH_RESULTS);
+            return _adapter.StreetData.Search(pattern, searchOption).Take(MAX_SEARCH_RESULTS);
         }
     }
 }
