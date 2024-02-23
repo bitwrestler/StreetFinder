@@ -32,17 +32,6 @@ div.content{
     padding-left: 3vw;
 }
 
-#resultsContainer {
-    width: 85vw;
-}
-
-#results {
-    padding-left: 3vw;
-    height: 50vh;
-    column-width: 220px;
-}
-
-#searchFrm{
+control-left-align{
     padding: .75em;
 }
-

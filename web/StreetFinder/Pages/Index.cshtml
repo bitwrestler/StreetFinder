@@ -7,14 +7,56 @@
 @section HeaderScript{
  <script type="text/javascript">
      $('#results').tooltip();
+     $("input").checkboxradio();
      window.addEventListener('DOMContentLoaded', (event) => {
         $('#searcher').on
             ("input", function () { street_searcher(@Model.MinSearchPattern); });
     });
 </script>
+<style>
+        #resultsContainer {
+            width: 85vw;
+        }
+
+        #results {
+            padding-left: 3vw;
+            height: 50vh;
+            column-width: 220px;
+        }
+    #wildcardLegend:before {
+        content: " ";
+        margin-left: 3em;
+        display: inline-block;
+        
+    }
+    #wildcardLegend{
+        vertical-align: bottom;
+    }
+
+    #searchTypeCtl {
+            width: fit-content;
+            display: inline;
+        }
+
+    #searcher{
+        width: 85vw;
+    }
+
+</style>
 }
-<span><small>* = wildcard</small></span>
-<form id="searchFrm" class="pico">
+
+<fieldset class="control-left-align" id="searchTypeCtl">
+        <legend>Search Type</legend>
+    <label for="radio-contains">Contains</label>
+        <input type="radio" name="radio-contains" id="radio-contains" value="0" checked/>
+    <label for="radio-startswith">Starts With</label>
+        <input type="radio" name="radio-startswith" id="radio-startswith" value="1"/>
+    <label for="radio-endswith">Ends With</label>
+        <input type="radio" name="radio-endswith" id="radio-endswith" value="2" />
+    </fieldset>
+<span id="wildcardLegend"><small>* = wildcard</small></span>
+    <P/>
+<form id="searchFrm" class="control-left-align pico">
     <input placeholder="Search for streets by typing at least 3 letters..." type="text" id="searcher" autofocus />
 </form>
 
