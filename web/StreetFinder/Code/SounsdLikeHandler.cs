@@ -8,7 +8,6 @@ namespace StreetFinder.Code
         private static readonly Regex rule_12 = new Regex("[^a-z]", RegexOptions.IgnoreCase);
         private static readonly Regex rule_3 = new Regex("[aeihouwy]", RegexOptions.IgnoreCase);
 
-
         /// <summary>
         /// 
         ///     Code lifted from https://github.com/haddow64/PhoneticSearch
