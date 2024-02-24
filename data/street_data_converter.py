@@ -17,9 +17,10 @@ with open(sys.argv[1], 'r', encoding='utf-8', newline='') as reader:
     creader = csv.DictReader(reader)
     for arow in creader:
         fn = arow['FULLNAME'].upper()
+        sn = arow['RW_NAME'].upper()
         int(arow['L_JURISDICTION'])
         if isjurd(int(arow['L_JURISDICTION']), int(arow['R_JURISDICTION'])) and (fn not in streetdistinct) :
-            tdict = {'zipcode_range' : (int(arow['L_POSTAL_AREA']), int(arow['R_POSTAL_AREA'])), 'name' : fn  }
+            tdict = {'zipcode_range' : (int(arow['L_POSTAL_AREA']), int(arow['R_POSTAL_AREA'])), 'name' : fn, 'short_name' : sn }
             streetarray.append(tdict)
             streetdistinct.add(fn)
 
