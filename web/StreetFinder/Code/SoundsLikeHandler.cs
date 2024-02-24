@@ -3,11 +3,20 @@ using System.Text;
 
 namespace StreetFinder.Code
 {
-    public class SounsdLikeHandler
+    public interface IPhoneticHandler
     {
+        IEnumerable<string> PhoneticTokens(string phrase);
+    }
+
+    public class SoundsLikeHandler : IPhoneticHandler
+    {
+        public IEnumerable<string> PhoneticTokens(string phrase)
+        {
+            return phrase.Split(" ").Select(st => Soundex(st));
+        }
+
         private static readonly Regex rule_12 = new Regex("[^a-z]", RegexOptions.IgnoreCase);
         private static readonly Regex rule_3 = new Regex("[aeihouwy]", RegexOptions.IgnoreCase);
-
         /// <summary>
         /// 
         ///     Code lifted from https://github.com/haddow64/PhoneticSearch
@@ -19,24 +28,27 @@ namespace StreetFinder.Code
         ///     http://www.techrepublic.com/blog/software-engineer/how-do-i-implement-the-soundex-function-in-c/#.
         /// </summary>
         /// <param name="inputNames">Called twice for user input and parsing of lines in .txt file</param>
-        public static string Soundex(string inputNames)
+        private static string Soundex(string inputNames)
         {
             var result = new StringBuilder();
             var previousNumber = "";
 
-            var removeSpaces = inputNames.Replace(" ", "");
+            //var removeSpaces = inputNames.Replace(" ", "");
 
             // 1.  All non-alphabetic characters are ignored
             // 2.  Word case is not significant
             // Rule one implemented using regular expressions
             // Rule two implemented from RegexOptions.IgnoreCase
             // Slower than the C# implementation of IsLetterOrDigit but more commonly used because its easier to understand and maintain
-            var onlyAlphabetic = rule_12.Replace(removeSpaces, "");  
+            var onlyAlphabetic = rule_12.Replace(inputNames, "");
 
             // 3.  After the first letter, any of the following letters are discarded: A, E, I, H, O, U, W, Y.
             // Rule three stores the first letter in getFirstLetter
             // Then uses regular expressions to remove the defined letters and rejoins the first letter
+            if (onlyAlphabetic.Length == 0)
+                return string.Empty;
             var getFirstLetter = onlyAlphabetic.Substring(0, 1);
+
             var removeLetters = rule_3.Replace(onlyAlphabetic.Remove(0, 1), "");
             inputNames = getFirstLetter + removeLetters;
 

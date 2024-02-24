@@ -19,7 +19,7 @@ namespace StreetsTests
             var adapter = new AzureDataAdapter();
             var data = adapter.StreetData;
             Assert.IsNotNull(data);
-            Assert.IsTrue(data.StreetData.Length > 1);
+            Assert.IsTrue(data.StreetData.Count() > 1);
             Assert.IsTrue(data.UpdateDate > DateTime.MinValue);
         }
     }
