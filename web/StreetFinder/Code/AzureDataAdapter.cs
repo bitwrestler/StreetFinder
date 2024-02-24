@@ -9,28 +9,24 @@ namespace StreetFinder.Code
         public const string CONTAINER_NAME = "streetsdata";
         public const string BLOB_NAME = "nova_data.json";
 
-        private readonly JsonDocument jsondata;
-        private StreetCollection? streetCollection=null;
+        private readonly StreetCollection streetCollection;
 
         public AzureDataAdapter()
         {
             var svc = new BlobContainerClient(System.Environment.GetEnvironmentVariable(SETTING_KEY), CONTAINER_NAME);
             var blobClient = svc.GetBlobClient(BLOB_NAME);
             string allBlob=string.Empty;
+            JsonDocument jsondata;
             using (var strm = blobClient.OpenRead(new Azure.Storage.Blobs.Models.BlobOpenReadOptions(false)))
             {
-                this.jsondata = JsonDocument.Parse(strm);
+                jsondata = JsonDocument.Parse(strm);
             }
+            streetCollection = StreetDataConverter.JsonDocToCollection(jsondata);
         }
 
         public StreetCollection StreetData { 
             get
             {
-                lock (jsondata)
-                {
-                    if (streetCollection is null)
-                        streetCollection = StreetDataConverter.JsonDocToCollection(jsondata);
-                }
                 return streetCollection;
             } 
         }
