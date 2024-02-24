@@ -12,7 +12,7 @@ namespace StreetsTests
     {
         public static StreetCollection GetTestStreetCollection()
         {
-            return AzureDataAdapter.JsonDocToCollection(JsonDocument.Parse(Resource1.streets));          
+            return StreetDataConverter.JsonDocToCollection(JsonDocument.Parse(Resource1.streets));          
         }
     }
 }
