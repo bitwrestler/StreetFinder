@@ -1,4 +1,6 @@
-﻿namespace StreetFinder.Code
+﻿using nullpointer.Metaphone;
+
+namespace StreetFinder.Code
 {
 
     public abstract class BaseTokenProviderSearcher : IPhoneticHandler
@@ -35,19 +37,4 @@
         public CodeProjectSoundexSearcher(string origDataWord) : base(origDataWord) { }
         protected override IPhoneticAlgorithm Computer => new CodeProjectSoundex();
     }
-
-    public class DoubleMetaphoneSearcher : IPhoneticHandler
-    {
-
-        public DoubleMetaphoneSearcher(string origDataWord)
-        {
-
-        }
-
-        public bool CompareTo(string pattern)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
 }

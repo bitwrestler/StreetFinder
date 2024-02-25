@@ -1,4 +1,5 @@
 ﻿using StreetFinder.Code;
+using StreetFinder.Code.PhoneticAlgorithms;
 using System;
 
 namespace StreetsTests
@@ -20,6 +21,14 @@ namespace StreetsTests
         {
             var h = PhoneticHandlerFactory.GetHandlerForPattern(realdata);
             Assert.IsTrue(h.CompareTo(searchterm));
+        }
+
+        [DataTestMethod]
+        [DataRow("braddock", "bradok")]
+        public void Search_DoubleMetaphonePhonetic_ExpectedResults(string realdata, string searchterm)
+        {
+            var searcher = new DoubleMetaphoneSearcher(realdata);
+            Assert.IsTrue(searcher.CompareTo(searchterm));
         }
     }
 }
