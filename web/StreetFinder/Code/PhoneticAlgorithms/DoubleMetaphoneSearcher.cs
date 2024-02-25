@@ -20,16 +20,19 @@ namespace StreetFinder.Code.PhoneticAlgorithms
         private static double CalcWeight(token_t dataTokens, token_t searchTokens)
         {
             double weight = 0.0;
+
+            double base_value = 1.0 / dataTokens.Item1.Length;
+
             foreach (var amatch in dataTokens.Item1.Intersect(searchTokens.Item1))
-                weight += .5;
+                weight += base_value;
             if (weight > MATCH_THRESHOLD)
                 return weight;
             foreach (var amatch in dataTokens.Item1.Intersect(searchTokens.Item2))
-                weight += .25;
+                weight += base_value / 2;
             if (weight > MATCH_THRESHOLD)
                 return weight;
             foreach (var amatch in dataTokens.Item2.Intersect(searchTokens.Item2))
-                weight += .125;
+                weight += base_value / 4;
             return weight;
         }
         
