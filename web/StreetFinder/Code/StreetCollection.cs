@@ -12,15 +12,19 @@ namespace StreetFinder.Code
             public readonly StreetRecord Street { get; init; }
             public readonly IPhoneticHandler PhoneticHandler { get; init; }
         }
-        
+
         private readonly ImmutableArray<SearchStruct> _structures;
 
-        public StreetCollection(DateTime udpdt, IEnumerable<StreetRecord> data) 
+        public StreetCollection(DateTime udpdt, IEnumerable<StreetRecord> data) : this(udpdt, data, new PhoneticHandlerFactory())
+        {
+        }
+
+        public StreetCollection(DateTime udpdt, IEnumerable<StreetRecord> data, PhoneticHandlerFactory phoneticFactory) 
         {
             UpdateDate = udpdt;
             _structures = data.Select(s=>new SearchStruct { 
                 Street = s,
-                PhoneticHandler = new PhoneticHandlerFactory().GetHandlerForPattern(s.ShortName) 
+                PhoneticHandler = phoneticFactory.GetHandlerForPattern(s.ShortName) 
             }).ToImmutableArray();
         }
 
