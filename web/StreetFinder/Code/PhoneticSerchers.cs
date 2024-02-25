@@ -35,4 +35,19 @@
         public CodeProjectSoundexSearcher(string pattern) : base(pattern) { }
         protected override IPhoneticAlgorithm Computer => new CodeProjectSoundex();
     }
+
+    public class DoubleMetaphoneSearcher : IPhoneticHandler
+    {
+
+        public DoubleMetaphoneSearcher(string pattern)
+        {
+
+        }
+
+        public bool CompareTo(string pattern)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }
