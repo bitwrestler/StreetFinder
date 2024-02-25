@@ -60,5 +60,13 @@ namespace StreetsTests
             var ret = coll.Search(pattern, SearchOptions.EndsWith);
             Assert.AreEqual(expectedCount, ret.Count());
         }
+
+        [DataTestMethod]
+        [DataRow("BRADOK", 77)]
+        public void Search_Phonetic_ExpectedResults(string pattern, int expectedCount)
+        {
+            var ret = coll.Search(pattern, SearchOptions.Phonetic);
+            Assert.AreEqual(expectedCount, ret.Count());
+        }
     }
 }

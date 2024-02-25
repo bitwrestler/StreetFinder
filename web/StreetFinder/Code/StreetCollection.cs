@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 
 
@@ -9,7 +10,7 @@ namespace StreetFinder.Code
         public struct SearchStruct
         {
             public readonly StreetRecord Street { get; init; }
-            public readonly HashSet<string> PhoneticValue { get; init; }
+            public readonly IPhoneticHandler PhoneticHandler { get; init; }
         }
         
         private readonly ImmutableArray<SearchStruct> _structures;
@@ -17,10 +18,9 @@ namespace StreetFinder.Code
         public StreetCollection(DateTime udpdt, IEnumerable<StreetRecord> data) 
         {
             UpdateDate = udpdt;
-            var phoneticHandler = new SoundsLikeHandler();
             _structures = data.Select(s=>new SearchStruct { 
-                Street = s, 
-                PhoneticValue = phoneticHandler.PhoneticTokens(s.ShortName).ToHashSet() 
+                Street = s,
+                PhoneticHandler = PhoneticHandlerFactory.GetHandlerForPattern(s.ShortName) 
             }).ToImmutableArray();
         }
 

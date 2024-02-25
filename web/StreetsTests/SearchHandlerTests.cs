@@ -15,15 +15,11 @@ namespace StreetsTests
         }
 
         [DataTestMethod]
-        [DataRow("bradok")]
-        public void SoundsLike_ExpectedResults(string street)
+        [DataRow("braddock", "bradok")]
+        public void Search_Phonetic_ExpectedResults(string realdata, string searchterm)
         {
-            var ph = new SoundsLikeHandler();
-            var phonetic = ph.PhoneticTokens(street);
-
-            var ret = coll.Search(street, SearchOptions.Phonetic).Select(s=>coll.FindSearchRecordByID(s.ID));
-            Assert.IsTrue(ret.Any());
-
+            var h = PhoneticHandlerFactory.GetHandlerForPattern(realdata);
+            Assert.IsTrue(h.CompareTo(searchterm));
         }
     }
 }

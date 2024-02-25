@@ -7,8 +7,7 @@ namespace StreetFinder.Code
     public class SearchHandler
     {
         private evaluatorDelg _func;
-        private IPhoneticHandler _phoneticHandler = new SoundsLikeHandler();
-
+       
         public SearchHandler(string pattern, SearchOptions options) {
             var pat = pattern.ToUpper();
             this._func = MakeHandler(pat,options);
@@ -47,8 +46,7 @@ namespace StreetFinder.Code
         {
             if (options == SearchOptions.Phonetic)
             {
-                var patternPhonetic = _phoneticHandler.PhoneticTokens(pat).ToHashSet();
-                return (StreetCollection.SearchStruct r) =>  patternPhonetic.Intersect(r.PhoneticValue).Any();
+                return (StreetCollection.SearchStruct r) => r.PhoneticHandler.CompareTo(pat);
             }
 
             if (TryPrepareWildcard(pat, options, out Regex? repattern) && repattern is not null)
