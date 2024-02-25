@@ -2,9 +2,9 @@
 {
     public static class PhoneticHandlerFactory
     {
-        public static IPhoneticHandler GetHandlerForPattern(string pattern)
+        public static IPhoneticHandler GetHandlerForPattern(string origDataWord)
         {
-            return new CodeProjectSoundexSearcher(pattern);
+            return new CodeProjectSoundexSearcher(origDataWord);
         }
     }
 }

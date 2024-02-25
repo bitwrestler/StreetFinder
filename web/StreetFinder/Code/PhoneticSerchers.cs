@@ -5,9 +5,9 @@
     {
         private readonly HashSet<string> tokens;
 
-        protected BaseTokenProviderSearcher(string pattern)
+        protected BaseTokenProviderSearcher(string origDataWord)
         {
-            this.tokens = PhoneticTokens(pattern);
+            this.tokens = PhoneticTokens(origDataWord);
         }
 
         public bool CompareTo(string pattern)
@@ -24,22 +24,22 @@
         }
     }
 
-    public class SoundExSearcher : BaseTokenProviderSearcher
+    public class GitHubSoundExSearcher : BaseTokenProviderSearcher
     {
-        public SoundExSearcher(string pattern) : base(pattern){ }
+        public GitHubSoundExSearcher(string origDataWord) : base(origDataWord){ }
         protected override IPhoneticAlgorithm Computer => new husseinbeygiSoundex();
     }
 
     public class CodeProjectSoundexSearcher : BaseTokenProviderSearcher
     {
-        public CodeProjectSoundexSearcher(string pattern) : base(pattern) { }
+        public CodeProjectSoundexSearcher(string origDataWord) : base(origDataWord) { }
         protected override IPhoneticAlgorithm Computer => new CodeProjectSoundex();
     }
 
     public class DoubleMetaphoneSearcher : IPhoneticHandler
     {
 
-        public DoubleMetaphoneSearcher(string pattern)
+        public DoubleMetaphoneSearcher(string origDataWord)
         {
 
         }
