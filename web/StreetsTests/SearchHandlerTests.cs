@@ -19,13 +19,24 @@ namespace StreetsTests
         [DataRow("braddock", "bradok")]
         public void Search_Phonetic_ExpectedResults(string realdata, string searchterm)
         {
-            var h = PhoneticHandlerFactory.GetHandlerForPattern(realdata);
+            var h = new PhoneticHandlerFactory().GetHandlerForPattern(realdata);
+            Assert.IsTrue(h.CompareTo(searchterm));
+        }
+
+
+        [DataTestMethod]
+        [DataRow("braddock", "bradok")]
+        public void Search_DoubleMetaphonePhonetic_ExpectedResults(string realdata, string searchterm)
+        {
+            var provider = new Func<string, IPhoneticHandler>((pattern) => new DoubleMetaphoneSearcher(pattern));
+
+            var h = new PhoneticHandlerFactory(provider).GetHandlerForPattern(realdata);
             Assert.IsTrue(h.CompareTo(searchterm));
         }
 
         [DataTestMethod]
         [DataRow("braddock", "bradok")]
-        public void Search_DoubleMetaphonePhonetic_ExpectedResults(string realdata, string searchterm)
+        public void CompareTo_DoubleMetaphonePhonetic_ExpectedResults(string realdata, string searchterm)
         {
             var searcher = new DoubleMetaphoneSearcher(realdata);
             Assert.IsTrue(searcher.CompareTo(searchterm));

@@ -20,7 +20,7 @@ namespace StreetFinder.Code
             UpdateDate = udpdt;
             _structures = data.Select(s=>new SearchStruct { 
                 Street = s,
-                PhoneticHandler = PhoneticHandlerFactory.GetHandlerForPattern(s.ShortName) 
+                PhoneticHandler = new PhoneticHandlerFactory().GetHandlerForPattern(s.ShortName) 
             }).ToImmutableArray();
         }
 
