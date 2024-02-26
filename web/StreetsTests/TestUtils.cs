@@ -1,4 +1,5 @@
 ﻿using StreetFinder.Code;
+using StreetFinder.Code.PhoneticAlgorithms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,27 @@ namespace StreetsTests
 {
     public class TestUtils
     {
-        public static StreetCollection GetTestStreetCollection()
+        public enum PhoneticType
         {
-            return StreetDataConverter.JsonDocToCollection(JsonDocument.Parse(Resource1.streets));          
+            CodeProjectSoundex,
+            DoubleMatphone
+        }
+
+
+        public static StreetCollection GetTestStreetCollection(PhoneticType phtype = PhoneticType.CodeProjectSoundex)
+        {
+            PhoneticHandlerFactory? phFactory = null;
+            switch(phtype)
+            {
+                case PhoneticType.CodeProjectSoundex:
+                    phFactory = new PhoneticHandlerFactory( (str) => new CodeProjectSoundexSearcher(str));
+                    break;
+                case PhoneticType.DoubleMatphone:
+                    phFactory = new PhoneticHandlerFactory( (str) => new DoubleMetaphoneSearcher(str));
+                    break;
+            }
+
+            return StreetDataConverter.JsonDocToCollection(JsonDocument.Parse(Resource1.streets), phFactory);          
         }
     }
 }

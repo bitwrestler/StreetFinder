@@ -4,7 +4,7 @@ namespace StreetFinder.Code
 {
     public class StreetDataConverter
     {
-        public static StreetCollection JsonDocToCollection(JsonDocument doc)
+        public static StreetCollection JsonDocToCollection(JsonDocument doc, PhoneticHandlerFactory? phoneticFactory = null)
         {
 
             DateTime? update_date = null;
@@ -27,7 +27,7 @@ namespace StreetFinder.Code
             if (!update_date.HasValue)
                 throw new InvalidOperationException("JSON data corrupt");
 
-            return new StreetCollection(update_date.Value, records);
+            return phoneticFactory is null ? new StreetCollection(update_date.Value, records) : new StreetCollection(update_date.Value, records, phoneticFactory);
         }
 
         private static IEnumerable<StreetRecord> JsonDataToStreetRecords(JsonElement arrayEle)
