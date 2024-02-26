@@ -1,4 +1,4 @@
-﻿using nullpointer.Metaphone;
+﻿using System.Text.RegularExpressions;
 
 namespace StreetFinder.Code
 {
@@ -6,6 +6,8 @@ namespace StreetFinder.Code
     public abstract class BaseTokenProviderSearcher : IPhoneticHandler
     {
         private readonly HashSet<string> tokens;
+
+        private readonly Regex NON_ALPHA_PATTERN = new Regex("[^A-Z]");
 
         protected BaseTokenProviderSearcher(string origDataWord)
         {
@@ -22,7 +24,7 @@ namespace StreetFinder.Code
 
         protected virtual HashSet<string> PhoneticTokens(string phrase)
         {
-            return phrase.Split(" ").Select(st => Computer.Compute(st)).ToHashSet();
+            return phrase.Split(" ").Select(sl=>NON_ALPHA_PATTERN.Replace(sl, "")).Select(st => Computer.Compute(st)).ToHashSet();
         }
     }
 
