@@ -28,12 +28,6 @@ namespace StreetFinder.Code
         }
     }
 
-    public class GitHubSoundExSearcher : BaseTokenProviderSearcher
-    {
-        public GitHubSoundExSearcher(string origDataWord) : base(origDataWord){ }
-        protected override IPhoneticAlgorithm Computer => new husseinbeygiSoundex();
-    }
-
     public class CodeProjectSoundexSearcher : BaseTokenProviderSearcher
     {
         public CodeProjectSoundexSearcher(string origDataWord) : base(origDataWord) { }
