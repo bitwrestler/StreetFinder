@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using static StreetsTests.TestUtils;
 
 namespace StreetsTests
 {
@@ -63,8 +64,18 @@ namespace StreetsTests
 
         [DataTestMethod]
         [DataRow("BRADOK", 77)]
-        public void Search_Phonetic_ExpectedResults(string pattern, int expectedCount)
+        public void Search_Phonetic_CodeProject_ExpectedResults(string pattern, int expectedCount)
         {
+            var ret = coll.Search(pattern, SearchOptions.Phonetic);
+            Assert.AreEqual(expectedCount, ret.Count());
+        }
+
+        [DataTestMethod]
+        [DataRow("BRADOK", 20)]
+        public void Search_Phonetic_DoubleMetaphone_ExpectedResults(string pattern, int expectedCount)
+        {
+            coll = TestUtils.GetTestStreetCollection(PhoneticType.DoubleMatphone);
+
             var ret = coll.Search(pattern, SearchOptions.Phonetic);
             Assert.AreEqual(expectedCount, ret.Count());
         }
