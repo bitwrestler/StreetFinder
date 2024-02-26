@@ -66,6 +66,7 @@ namespace StreetsTests
         [DataRow("BRADOK", 77)]
         public void Search_Phonetic_CodeProject_ExpectedResults(string pattern, int expectedCount)
         {
+            coll = TestUtils.GetTestStreetCollection(PhoneticType.CodeProjectSoundex);
             var ret = coll.Search(pattern, SearchOptions.Phonetic);
             Assert.AreEqual(expectedCount, ret.Count());
         }

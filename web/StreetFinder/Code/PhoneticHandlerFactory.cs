@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using StreetFinder.Code.PhoneticAlgorithms;
+using System.Runtime.CompilerServices;
 
 namespace StreetFinder.Code
 {
@@ -8,7 +9,7 @@ namespace StreetFinder.Code
 
         public PhoneticHandlerFactory()
         {
-            handlerProvider = (pattern) => new CodeProjectSoundexSearcher(pattern);
+            handlerProvider = (pattern) => new DoubleMetaphoneSearcher(pattern);
         }
 
         public PhoneticHandlerFactory(Func<string, IPhoneticHandler> handlerProvider)
