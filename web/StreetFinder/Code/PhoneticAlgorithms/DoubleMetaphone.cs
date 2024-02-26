@@ -175,7 +175,7 @@ namespace nullpointer.Metaphone
 						current	+=1;
 					break;
 	
-				case 'Ç':
+				case 'Ã‡':
 					addMetaphoneCharacter("S");
 					current += 1;
 					break;
@@ -535,7 +535,7 @@ namespace nullpointer.Metaphone
 					addMetaphoneCharacter("N");
 					break;
 	
-				case 'Ñ':
+				case 'Ã‘':
 					current += 1;
 					addMetaphoneCharacter("N");
 					break;
