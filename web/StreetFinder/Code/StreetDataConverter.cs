@@ -4,7 +4,7 @@ namespace StreetFinder.Code
 {
     public class StreetDataConverter
     {
-        public static StreetCollection JsonDocToCollection(JsonDocument doc)
+        public static StreetCollection JsonDocToCollection(JsonDocument doc, PhoneticHandlerFactory? phoneticFactory = null)
         {
 
             DateTime? update_date = null;
@@ -27,15 +27,15 @@ namespace StreetFinder.Code
             if (!update_date.HasValue)
                 throw new InvalidOperationException("JSON data corrupt");
 
-            return new StreetCollection(update_date.Value, records);
+            return phoneticFactory is null ? new StreetCollection(update_date.Value, records) : new StreetCollection(update_date.Value, records, phoneticFactory);
         }
 
         private static IEnumerable<StreetRecord> JsonDataToStreetRecords(JsonElement arrayEle)
         {
-            var l = new List<StreetRecord>();
-
+            int id = 0;
             foreach (var arec in arrayEle.EnumerateArray())
             {
+                id++;
                 string? name = null;
                 string? short_name = null;
                 int[]? zr = null;
@@ -56,7 +56,7 @@ namespace StreetFinder.Code
                 }
                 if (name is null || zr is null || short_name is null)
                     throw new InvalidOperationException("JSON data corrupt");
-                yield return new StreetRecord(name, CompressZipCodeRange(zr), short_name);
+                yield return new StreetRecord(id, name, CompressZipCodeRange(zr), short_name);
             }
         }
 

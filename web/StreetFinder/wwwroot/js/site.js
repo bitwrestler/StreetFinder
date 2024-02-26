@@ -11,9 +11,11 @@ function getSearchType() {
 
 function street_searcher(min_search_pattern) {
     var pat = $('#searcher').val();
+    var st = getSearchType();
+    if (st == "Phonetic") { $('#wildcardLegend').hide(); } else { $('#wildcardLegend').show(); }
     if (pat.length >= min_search_pattern) {
         $('#results').empty();
-        $.getJSON('/api/StreetRecord/Search', { pattern: pat, searchType: getSearchType() }).done(
+        $.getJSON('/api/StreetRecord/Search', { pattern: pat, searchType: st }).done(
             function (results) {
                 $.each(
                     results, function (i, street) {

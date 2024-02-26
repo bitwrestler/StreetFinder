@@ -1,19 +1,19 @@
 ﻿using System.Text.RegularExpressions;
 
-using evaluatorDelg = System.Func<StreetFinder.Code.StreetRecord, bool>;
+using evaluatorDelg = System.Func<StreetFinder.Code.StreetCollection.SearchStruct, bool>;
 
 namespace StreetFinder.Code
 {
     public class SearchHandler
     {
         private evaluatorDelg _func;
-
+       
         public SearchHandler(string pattern, SearchOptions options) {
             var pat = pattern.ToUpper();
             this._func = MakeHandler(pat,options);
         }
 
-        public bool Search(StreetRecord record)
+        public bool Search(StreetCollection.SearchStruct record)
         {
             return this._func(record);
         }
@@ -44,18 +44,23 @@ namespace StreetFinder.Code
 
         private evaluatorDelg MakeHandler(string pat, SearchOptions options)
         {
+            if (options == SearchOptions.Phonetic)
+            {
+                return (StreetCollection.SearchStruct r) => r.PhoneticHandler.CompareTo(pat);
+            }
+
             if (TryPrepareWildcard(pat, options, out Regex? repattern) && repattern is not null)
             { 
-                return (StreetRecord r) => repattern.IsMatch(r.Name);
+                return (StreetCollection.SearchStruct r) => repattern.IsMatch(r.Street.Name);
             }
             switch(options)
             {
                 case SearchOptions.StartsWith:
-                    return (StreetRecord r) => r.Name.StartsWith(pat);
+                    return (StreetCollection.SearchStruct r) => r.Street.Name.StartsWith(pat);
                 case SearchOptions.EndsWith:
-                    return (StreetRecord r) => r.Name.EndsWith(pat);
+                    return (StreetCollection.SearchStruct r) => r.Street.Name.EndsWith(pat);
                 default:
-                    return (StreetRecord r) => r.Name.Contains(pat);
+                    return (StreetCollection.SearchStruct r) => r.Street.Name.Contains(pat);
             }
         }
     }
