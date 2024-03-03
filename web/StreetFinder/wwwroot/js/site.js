@@ -2,7 +2,7 @@
     var z = streetObj.zipCodeRange[0];
     if (streetObj.zipCodeRange.length > 1)
         z = z + "-" + streetObj.zipCodeRange[1];
-    return "zipcode: " + z;
+    return "(" + streetObj.id + ") zipcode: " + z;
 }
 
 function getSearchType() {
