@@ -21,7 +21,7 @@ namespace StreetFinder.Code
 
         
 
-        public async Task<string> GetLatAndLongAsync(StreetRecord record)
+        public async Task<string[]> GetLatAndLongAsync(StreetRecord record)
         {
             var query = new QueryBuilder(qparms.Concat(
                  [
@@ -31,21 +31,12 @@ namespace StreetFinder.Code
             var urimaker = new UriBuilder(AZURE_MAP_BASEURL);
             urimaker.Query = query.ToQueryString().ToUriComponent();
             var addressObj = await _httpClient.GetFromJsonAsync<AzureAddressStruct>(urimaker.Uri);
-            //TODO handle multi or no results better
-            if(addressObj is not null && addressObj.summary.totalResults > 0)
+            if(addressObj is null)
             {
-                var uniquePositions = addressObj.results.Select(sl => sl.position).ToImmutableHashSet();
-                if(uniquePositions.Count == 1)
-                {
-                    return addressObj.results[0].position.ToString();
-                } else
-                {
-                    return string.Empty;
-                }
-
+                return new string[0];
             } else
             {
-                return string.Empty;
+                return addressObj.results.OrderByDescending(o => o.score).Select(sl => sl.position.ToString()).ToArray();
             }
         }
     }

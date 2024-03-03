@@ -30,13 +30,13 @@ namespace StreetFinder.Controllers
         }
 
         [HttpGet(nameof(Coordinates))]
-        public async Task<string> Coordinates([FromServices] IAzureMapSericeClient restClient, [FromQuery] int id)
+        public async Task<string[]> Coordinates([FromServices] IMapService restClient, [FromQuery] int id)
         {
             var ss = _adapter.StreetData.GetByID(id);
-            if(string.IsNullOrEmpty(ss.LatLong))
+            if(ss.LatLong is null)
             {
-                string latlon =  await restClient.GetLatAndLongAsync(ss.Street);
-                if(! string.IsNullOrEmpty(latlon))
+                var latlon =  await restClient.GetLatAndLongAsync(ss.Street);
+                if(latlon.Any())
                     ss.LatLong = latlon;
                 return latlon;
             } else

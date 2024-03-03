@@ -17,7 +17,7 @@ namespace StreetFinder.Code
 
             public StreetRecord Street { get; init; }
             public IPhoneticHandler PhoneticHandler { get; init; }
-            public string? LatLong { get; set; }
+            public string[]? LatLong { get; set; } = null;
         }
 
         private readonly ImmutableArray<SearchStruct> _structures;

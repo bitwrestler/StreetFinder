@@ -2,6 +2,6 @@
 {
     public interface IMapService
     {
-        Task<string> GetLatAndLongAsync(StreetRecord record);
+        Task<string[]> GetLatAndLongAsync(StreetRecord record);
     }
 }

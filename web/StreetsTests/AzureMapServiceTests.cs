@@ -21,9 +21,10 @@ namespace StreetsTests
             using (var client = new HttpClient())
             {
                 var svc = new AzureMapServiceClient(client);
-                string latlon = await svc.GetLatAndLongAsync(srecord);
-                Assert.IsTrue(! string.IsNullOrEmpty(latlon));
-                Assert.IsTrue(latlon.Contains("+"));
+                string[] latlon = await svc.GetLatAndLongAsync(srecord);
+                Assert.IsNotNull(latlon);
+                Assert.IsTrue(latlon.Length > 0);
+                Assert.IsTrue(latlon[0].Contains("+"));
             }
         }
     }
