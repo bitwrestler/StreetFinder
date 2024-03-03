@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http.Extensions;
+using System.Collections.Immutable;
 
 namespace StreetFinder.Code
 {
@@ -33,12 +34,19 @@ namespace StreetFinder.Code
                 ));
             var urimaker = new UriBuilder(AZURE_MAP_BASEURL);
             urimaker.Query = query.ToQueryString().ToUriComponent();
-
             var addressObj = await _httpClient.GetFromJsonAsync<AzureAddressStruct>(urimaker.Uri);
-            
-            if(addressObj is not null && addressObj.summary.totalResults == 1)
+            //TODO handle multi or no results better
+            if(addressObj is not null && addressObj.summary.totalResults > 0)
             {
-                return addressObj.results[0].position.ToString();
+                var uniquePositions = addressObj.results.Select(sl => sl.position).ToImmutableHashSet();
+                if(uniquePositions.Count == 1)
+                {
+                    return addressObj.results[0].position.ToString();
+                } else
+                {
+                    return string.Empty;
+                }
+
             } else
             {
                 return string.Empty;
