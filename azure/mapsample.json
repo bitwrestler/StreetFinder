@@ -1,0 +1,50 @@
+{
+    "results": [
+        {
+            "address": {
+                "country": "United States",
+                "countryCode": "US",
+                "countryCodeISO3": "USA",
+                "countrySecondarySubdivision": "Fairfax County",
+                "countrySubdivision": "VA",
+                "countrySubdivisionCode": "VA",
+                "countrySubdivisionName": "Virginia",
+                "extendedPostalCode": "22150-2453, 22150-2454, 22150-2455, 22150-2456, 22150-2457, 22150-2458, 22150-2459, 22150-2460, 22150-2461, 22150-3249, 22150-3250, 22150-3251, 22150-3252, 22150-3701, 22150-3702, 22150-3736, 22150-3737, 22150-3738, 22150-3740, 22150-3811, 22150-3812, 22150-3813, 22150-3828, 22150-3829, 22150-3830, 22150-3843",
+                "freeformAddress": "Floyd Avenue, Springfield, VA 22150",
+                "localName": "Springfield",
+                "municipality": "Lee",
+                "postalCode": "22150",
+                "streetName": "Floyd Avenue"
+            },
+            "id": "nifDenIP_h1X2UcNGgTvBw",
+            "matchConfidence": {
+                "score": 1
+            },
+            "position": {
+                "lat": 38.78901,
+                "lon": -77.18998
+            },
+            "score": 8.4221801758,
+            "type": "Street",
+            "viewport": {
+                "btmRightPoint": {
+                    "lat": 38.77945,
+                    "lon": -77.17802
+                },
+                "topLeftPoint": {
+                    "lat": 38.79743,
+                    "lon": -77.20109
+                }
+            }
+        }
+    ],
+    "summary": {
+        "fuzzyLevel": 1,
+        "numResults": 1,
+        "offset": 0,
+        "query": "floyd ave virginia 22150",
+        "queryTime": 4,
+        "queryType": "NON_NEAR",
+        "totalResults": 1
+    }
+}
