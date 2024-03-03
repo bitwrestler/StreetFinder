@@ -10,6 +10,7 @@
      $("input").checkboxradio();
      var searchAction = function () { street_searcher(@Model.MinSearchPattern); };
      window.addEventListener('DOMContentLoaded', (event) => {
+         $('#map').hide();
        $('#searcher').on("input", searchAction);
        $('input[name="search-type-radio"]').on("change", searchAction)
     });
@@ -71,4 +72,6 @@
     <ul id="results">
 
     </ul>
+    <IFRAME id="map" src="" width="600" height="400"></IFRAME>
 </div>
+
