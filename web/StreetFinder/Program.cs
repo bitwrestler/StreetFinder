@@ -16,7 +16,7 @@ namespace StreetFinder
             // Add services to the container.
             builder.Services.AddRazorPages();
             builder.Services.AddSingleton<IDataAdapter,AzureDataAdapter>();
-            builder.Services.AddHttpClient<IAzureMapSericeClient, AzureMapServiceClient>();
+            builder.Services.AddHttpClient<IMapService, AzureMapServiceClient>();
             var app = builder.Build();
 
             //warm up the data service

@@ -3,11 +3,7 @@ using System.Collections.Immutable;
 
 namespace StreetFinder.Code
 {
-    public interface IAzureMapSericeClient
-    {
-        Task<string> GetLatAndLongAsync(StreetRecord record);
-    }
-    public class AzureMapServiceClient : IAzureMapSericeClient
+    public class AzureMapServiceClient : IMapService
     {
         private readonly HttpClient _httpClient;
 
