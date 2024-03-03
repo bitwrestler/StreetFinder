@@ -10,7 +10,7 @@
      $("input").checkboxradio();
      var searchAction = function () { street_searcher(@Model.MinSearchPattern); };
      window.addEventListener('DOMContentLoaded', (event) => {
-         $('#map').hide();
+         $('#mapContainer').hide();
        $('#searcher').on("input", searchAction);
        $('input[name="search-type-radio"]').on("change", searchAction)
     });
@@ -21,7 +21,7 @@
     }    
     #results {
          padding-left: 3vw;
-         height: 50vh;
+         height: 20vh;
          column-width: 220px;
     }
     #wildcardLegend:before {
@@ -72,6 +72,9 @@
     <ul id="results">
 
     </ul>
-    <IFRAME id="map" src="" width="600" height="400"></IFRAME>
+    <span id="mapContainer"> 
+        <h3 id="mapCaption"></h3>
+        <IFRAME id="map" src="" width="600" height="400"></IFRAME>
+    </span>
 </div>
 
