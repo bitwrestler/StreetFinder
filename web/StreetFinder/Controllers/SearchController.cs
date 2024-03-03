@@ -17,7 +17,7 @@ namespace StreetFinder.Controllers
             _adapter = dataAdapter;
         }
 
-        [HttpGet("Search", Name = "Search")]
+        [HttpGet(nameof(Search))]
         public IEnumerable<StreetRecord> Search(string pattern, string searchType)
         {
             if (!Enum.TryParse<SearchOptions>(searchType, false, out var searchOption))
@@ -27,6 +27,19 @@ namespace StreetFinder.Controllers
                 return Enumerable.Empty<StreetRecord>();
 
             return _adapter.StreetData.Search(pattern, searchOption).Take(MAX_SEARCH_RESULTS);
+        }
+
+        [HttpGet(nameof(Coordinates))]
+        public async Task<string> Coordinates([FromServices] IAzureMapSericeClient restClient, int id)
+        {
+            var ss = _adapter.StreetData.GetByID(id);
+            if(string.IsNullOrEmpty(ss.LatLong))
+            {
+                return await restClient.GetLatAndLongAsync(ss.Street);
+            } else
+            {
+                return await Task.FromResult(ss.LatLong);
+            }
         }
     }
 }

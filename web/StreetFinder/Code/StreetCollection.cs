@@ -7,10 +7,17 @@ namespace StreetFinder.Code
 {
     public class StreetCollection
     {
-        public struct SearchStruct
+        public class SearchStruct
         {
-            public readonly StreetRecord Street { get; init; }
-            public readonly IPhoneticHandler PhoneticHandler { get; init; }
+            public SearchStruct(StreetRecord street, IPhoneticHandler phHandler)
+            {
+                Street = street;
+                PhoneticHandler = phHandler;
+            }
+
+            public StreetRecord Street { get; init; }
+            public IPhoneticHandler PhoneticHandler { get; init; }
+            public string? LatLong { get; set; }
         }
 
         private readonly ImmutableArray<SearchStruct> _structures;
@@ -22,27 +29,28 @@ namespace StreetFinder.Code
         public StreetCollection(DateTime udpdt, IEnumerable<StreetRecord> data, PhoneticHandlerFactory phoneticFactory) 
         {
             UpdateDate = udpdt;
-            _structures = data.Select(s=>new SearchStruct { 
-                Street = s,
-                PhoneticHandler = phoneticFactory.GetHandlerForPattern(s.ShortName) 
+            _structures = data.Select(s=>new SearchStruct(s, phoneticFactory.GetHandlerForPattern(s.ShortName)) { 
             }).ToImmutableArray();
         }
 
         public DateTime UpdateDate { get; private set;}
 
         internal IEnumerable<StreetRecord> StreetData => _structures.Select(s => s.Street);
-
-        internal SearchStruct FindSearchRecordByID(int id)
-        {
-            return this._structures.Single(sl => sl.Street.ID == id);
-        }
             
-
         public IEnumerable<StreetRecord> Search(string pattern, SearchOptions options)
         {
             var handler = new SearchHandler(pattern, options);
             return _structures.Where(handler.Search).Select(s=>s.Street);
         }
+
+        public SearchStruct GetByID(int id)
+        {
+            var ss = _structures.SingleOrDefault(sng => sng.Street.ID == id);
+            if(ss is null)
+                throw new IndexOutOfRangeException(nameof(id));
+            return ss;
+        }
+            
 
         //TODO async searching
     }
