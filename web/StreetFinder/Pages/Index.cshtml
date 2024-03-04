@@ -18,12 +18,16 @@
 <style>
     #resultsContainer {
          width: 85vw;
-    }    
+         height: 25vh;
+         display: grid;
+         grid-template-columns: 60vw, 40vw;
+    }
+
     #results {
          padding-left: 3vw;
-         height: 20vh;
          column-width: 220px;
     }
+
     #wildcardLegend:before {
         content: " ";
         margin-left: 3em;
@@ -68,11 +72,11 @@
     <input placeholder="Search for streets by typing at least 3 letters..." type="text" id="searcher" autofocus />
 </form>
 
-<div id="resultsContainer" class="pico">
-    <ul id="results">
-
-    </ul>
-    <span id="mapContainer"> 
+<div id="resultsContainer">
+    <span style="grid-column: 1; grid-row: 1;">
+        <ul id="results"></ul>
+    </span>
+    <span id="mapContainer" style="grid-column: 2; grid-row: 1;">
         <h3 id="mapCaption"></h3>
         <IFRAME id="map" src="" width="600" height="400"></IFRAME>
     </span>
