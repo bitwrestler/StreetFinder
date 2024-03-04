@@ -15,44 +15,6 @@
        $('input[name="search-type-radio"]').on("change", searchAction)
     });
 </script>
-<style>
-    #resultsContainer {
-         width: 85vw;
-         height: 25vh;
-         display: grid;
-         grid-template-columns: 60vw, 40vw;
-    }
-
-    #results {
-         padding-left: 3vw;
-         column-width: 220px;
-    }
-
-    #wildcardLegend:before {
-        content: " ";
-        margin-left: 3em;
-        display: inline-block;   
-    }
-
-        #stlabel-2:before, #stlabel-3:before, #stlabel-4:before {
-            content: " ";
-            margin-left: 2em;
-            display: inline-block;
-        }
-
-    #wildcardLegend{
-        vertical-align: bottom;
-    }
-    #searchTypeCtl {
-            width: fit-content;
-            display: inline;
-    }
-    #searcher{
-        width: 85vw;
-    }
-    
-
-</style>
 }
 
 <fieldset class="control-left-align" id="searchTypeCtl">
@@ -77,7 +39,7 @@
         <ul id="results"></ul>
     </span>
     <span id="mapContainer" style="grid-column: 2; grid-row: 1;">
-        <h3 id="mapCaption"></h3>
+        <div style="width:600px;"><h3 class="inline leftjust" id="mapCaption"></h3><img src="~/close-mini-1522-svgrepo-com.svg" class="rightjust clickable" width="16" height="16" onclick="$('#mapContainer').hide();"/></div>
         <IFRAME id="map" src="" width="600" height="400"></IFRAME>
     </span>
 </div>

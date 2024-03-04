@@ -39,3 +39,52 @@ control-left-align{
 img.clickable:hover{
     cursor: pointer
 }
+
+.leftjust{
+    text-align: left;
+}
+
+.rightjust{
+    float: right;
+}
+
+.inline{
+    display: inline-block;
+}
+
+#resultsContainer {
+    width: 85vw;
+    height: 25vh;
+    display: grid;
+    grid-template-columns: 60vw, 40vw;
+}
+
+#results {
+    padding-left: 3vw;
+    column-width: 220px;
+}
+
+#wildcardLegend:before {
+    content: " ";
+    margin-left: 3em;
+    display: inline-block;
+}
+
+#stlabel-2:before, #stlabel-3:before, #stlabel-4:before {
+    content: " ";
+    margin-left: 2em;
+    display: inline-block;
+}
+
+#wildcardLegend {
+    vertical-align: bottom;
+}
+
+#searchTypeCtl {
+    width: fit-content;
+    display: inline;
+}
+
+#searcher {
+    width: 85vw;
+}
