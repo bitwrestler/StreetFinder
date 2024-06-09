@@ -3,13 +3,13 @@ namespace StreetFinder.Code
 {
     public class AzureAddressStruct
     {
-        public resultObj[] results {get;set;}
-        public summaryObj summary { get;set;}
+        public resultObj[]? results {get;set;}
+        public summaryObj? summary { get;set;}
 
         public class resultObj
         {
             public double score { get; set; }
-            public positionObj position { get;set;} 
+            public positionObj? position { get;set;} 
 
             public class positionObj
             {
