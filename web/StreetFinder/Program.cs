@@ -9,14 +9,14 @@ namespace StreetFinder
         public static void Main(string[] args)
         {
 #if DEBUG
-            DebugConfig.ProcessDotEnvFile(DebugConfig.FindAzureConfigInParents(".env"));
+  //          DebugConfig.ProcessDotEnvFile(DebugConfig.FindAzureConfigInParents(".env"));
 #endif
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-            builder.Services.AddSingleton<IDataAdapter,AzureDataAdapter>();
-            builder.Services.AddHttpClient<IMapService, AzureMapServiceClient>();
+            builder.Services.AddSingleton<IDataAdapter, LocalResourceDataAdpater>();
+            //builder.Services.AddHttpClient<IMapService, AzureMapServiceClient>();
             var app = builder.Build();
 
             //warm up the data service

@@ -37,7 +37,7 @@ function street_searcher(min_search_pattern) {
                 $.each(
                     results, function (i, street) {
                         var num = i + 1;
-                        var item = `<li title="${formatToolTip(street)}">${num}. ${formatMapLink(street)} <strong>${street.name}</strong></li>`;
+                        var item = `<li title="${formatToolTip(street)}">${num}. <strong>${street.name}</strong></li>`;
                         $('#results').append(item);
                 }
                 );
