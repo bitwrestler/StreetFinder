@@ -31,12 +31,14 @@ namespace StreetFinder.Code
             var urimaker = new UriBuilder(AZURE_MAP_BASEURL);
             urimaker.Query = query.ToQueryString().ToUriComponent();
             var addressObj = await _httpClient.GetFromJsonAsync<AzureAddressStruct>(urimaker.Uri);
-            if(addressObj is null)
+            if(addressObj is null || addressObj.results is null)
             {
                 return new string[0];
             } else
             {
-                return addressObj.results.OrderByDescending(o => o.score).Select(sl => sl.position.ToString()).ToArray();
+                return addressObj.results.OrderByDescending(o => o.score)
+                    .Where(sl => sl is not null && sl.position is not null)
+                    .Select(sl => sl.position is null ? string.Empty : sl.position.ToString()).ToArray();
             }
         }
     }

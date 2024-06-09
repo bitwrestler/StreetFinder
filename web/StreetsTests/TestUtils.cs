@@ -20,7 +20,7 @@ namespace StreetsTests
 
         public static StreetCollection GetTestStreetCollection(PhoneticType phtype = PhoneticType.DoubleMatphone)
         {
-            PhoneticHandlerFactory? phFactory = null;
+            PhoneticHandlerFactory phFactory = null;
             switch(phtype)
             {
                 case PhoneticType.CodeProjectSoundex:
