@@ -5,7 +5,12 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreetFinder", "StreetFinder\StreetFinder.csproj", "{C82418FF-DE1B-4FFD-ABE5-A874943F5F8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreetsTests", "StreetsTests\StreetsTests.csproj", "{41EF0DAB-6CA3-4765-AF39-B5A8462B09E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreetsTests", "StreetsTests\StreetsTests.csproj", "{41EF0DAB-6CA3-4765-AF39-B5A8462B09E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{17723F2C-66AF-484A-8016-B2F99B24C1AD}"
+	ProjectSection(SolutionItems) = preProject
+		start.bat = start.bat
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,7 +5,12 @@
         public static string FindAzureConfigInParents(string configFile)
         {
             const string search_path = "azure";
-            string? start = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetCallingAssembly().Location);
+            string loc = System.Reflection.Assembly.GetCallingAssembly().Location;
+            if (string.IsNullOrWhiteSpace(loc))
+            {
+                throw new InvalidOperationException("current directory can not be determined");
+            }
+            string? start = System.IO.Path.GetDirectoryName(loc);
             string? origStart = start;
             if (start is null)
                 throw new ArgumentException("Can not get file location of Calling Assmebly");
